@@ -88,6 +88,11 @@ export default function ModelProvider(props) {
         setCurrentWord("")
     };
 
+    const deleteLastDigit = () => {
+        let word = current_word.substring(0, current_word.length - 1);
+        setCurrentWord(word)
+    }; 
+
     useEffect(() => {
         let word = current_word + current_letter
         setCurrentWord(word)
@@ -102,6 +107,7 @@ export default function ModelProvider(props) {
         deleteWord,
         setup,
         setLoading,
+        deleteLastDigit,
         startGuessing,
         stopAction,
     }
