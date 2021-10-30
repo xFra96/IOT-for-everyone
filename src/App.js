@@ -23,7 +23,14 @@ const App = () => {
           <span className="sr-only"></span>
         </div>
       </div>
-      <div className="container-fluid p-3 text-center">
+      <div className="container-fluid mb-4 text-center">
+        <div className="row">
+          <div className="col-lg-12 col-md-12">
+            <h3 className="text-center">IOT For Everyone</h3>
+          </div>
+        </div>
+      </div>
+      <div className="container-fluid text-center">
         <div className="row">
           <div className="col-lg-6 col-md-12">
             <Webcam />
