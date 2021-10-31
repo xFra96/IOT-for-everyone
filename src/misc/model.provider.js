@@ -91,11 +91,17 @@ export default function ModelProvider(props) {
     const deleteLastDigit = () => {
         let word = current_word.substring(0, current_word.length - 1);
         setCurrentWord(word)
-    }; 
+    };
 
     useEffect(() => {
-        let word = current_word + current_letter
-        setCurrentWord(word)
+        if (current_letter === "space") {
+            let word = current_word + " "
+            setCurrentWord(word)
+        } else {
+            let word = current_word + current_letter
+            setCurrentWord(word)
+        }
+
     }, [current_letter])
 
 
