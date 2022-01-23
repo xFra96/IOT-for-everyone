@@ -14,7 +14,7 @@ const Webcam = () => {
                 <button type="button" onClick={() => { stopAction() }} className="btn btn-danger mx-3">STOP</button>
                 <button type="button" onClick={() => { deleteLastDigit() }} className="btn btn-warning mx-3">BACKSPACE</button>
                 <button type="button" onClick={() => { deleteWord() }} className="btn btn-warning mx-3">DELETE</button>
-                <a href="https://www.spreadthesign.com/it.it/alphabet/6/" className="mt-3 w-100 text-center d-block" target="_blank">Esempi</a>
+                <a href="https://www.spreadthesign.com/it.it/alphabet/6/" className="mt-3 w-100 text-center d-block" target="_blank" rel="noreferrer">Esempi</a>
             </div>
 
         </>

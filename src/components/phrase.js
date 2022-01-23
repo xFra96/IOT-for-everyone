@@ -25,9 +25,9 @@ const Phrase = () => {
                 <div className="col-12 mb-4">
                     <p>Scegli una voce / Choose Language</p>
                     <select className="w-50 mx-auto form-select" id="selectlingua" aria-label="Seleziona lingua">
-                        {voices.map(el => {
+                        {voices.map((el, i) => {
                             return (
-                                <option value={el.name}>{el.name}</option>
+                                <option key={i} value={el.name}>{el.name}</option>
                             )
                         }
                         )
