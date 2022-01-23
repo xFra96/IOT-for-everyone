@@ -7,7 +7,7 @@ const Webcam = ({ webcam, classifier, handpose, tf }) => {
     const [hint1, setHint1] = useState("Premere START per iniziare a individuare i segni");
     const [hint2, setHint2] = useState("");
     const [hint3, setHint3] = useState("");
-    const [current_word, setCurrentWord] = useState("");
+    const [current_phrase, setCurrentWord] = useState("");
 
     //Guesser
     const guess = () => {
@@ -22,7 +22,7 @@ const Webcam = ({ webcam, classifier, handpose, tf }) => {
                     let tensor = tf.tensor(keypoints);
                     const match = await classifier.predictClass(tensor);
                     console.log(match)
-                    let word = current_word
+                    let word = current_phrase
                     if (match.label === "space") {
                         setCurrentWord(word + " ")
                     } else {
@@ -68,7 +68,7 @@ const Webcam = ({ webcam, classifier, handpose, tf }) => {
     };
 
     const deleteLastDigit = () => {
-        let word = current_word.substring(0, current_word.length - 1);
+        let word = current_phrase.substring(0, current_phrase.length - 1);
         setCurrentWord(word)
     };
 
@@ -86,7 +86,7 @@ const Webcam = ({ webcam, classifier, handpose, tf }) => {
                 </div>
             </div>
             <div className="col-lg-6 col-md-12">
-                <Phrase hint1={hint1} hint2={hint2} hint3={hint3} current_word={current_word} deleteLastDigit={deleteLastDigit} deleteWord={deleteWord} />
+                <Phrase hint1={hint1} hint2={hint2} hint3={hint3} current_phrase={current_phrase} deleteLastDigit={deleteLastDigit} deleteWord={deleteWord} />
             </div>
         </div>
     )

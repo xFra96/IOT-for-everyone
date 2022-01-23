@@ -1,11 +1,11 @@
 import React from 'react'
 import Speaker from './speaker';
 
-const Phrase = ({ deleteWord, deleteLastDigit, current_word, hint1, hint2, hint3 }) => {
+const Phrase = ({ deleteWord, deleteLastDigit, current_phrase, hint1, hint2, hint3 }) => {
     return (
         <>
             <div className="textcontainer">
-                <p>{current_word}</p>
+                <p>{current_phrase}</p>
             </div>
             <div className="mt-2">
                 <p className="mb-1 f-7"><b>{hint1}</b></p>
@@ -16,7 +16,7 @@ const Phrase = ({ deleteWord, deleteLastDigit, current_word, hint1, hint2, hint3
                 <button type="button" onClick={() => { deleteWord() }} className="btn btn-warning mx-3 shadow">DELETE</button>
             </div>
             <div className="row">
-                <Speaker current_word={current_word} />
+                <Speaker current_phrase={current_phrase} />
             </div>
         </>
     )

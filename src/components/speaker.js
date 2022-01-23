@@ -1,9 +1,9 @@
-const Speaker = ({ current_word }) => {
+const Speaker = ({ current_phrase }) => {
     const synth = window.speechSynthesis;
     const voices = synth.getVoices()
 
     const speak = () => {
-        let utterThis = new SpeechSynthesisUtterance(current_word);
+        let utterThis = new SpeechSynthesisUtterance(current_phrase);
         let selectedOption = document.querySelector("#selectlingua").selectedOptions[0].getAttribute('value');
         for (var i = 0; i < voices.length; i++) {
             if (voices[i].name === selectedOption) {
