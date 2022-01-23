@@ -41,7 +41,7 @@ const App = () => {
       alert("Dataset non valido e/o vuoto ! Inserire un dataset valido")
     }
     setLoading(false)
-    console.log("Ready !")
+    //console.log("Ready !")
   }
 
   useEffect(() => {
