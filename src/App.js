@@ -6,8 +6,8 @@ import * as handpose from '@tensorflow-models/handpose';
 import '@tensorflow/tfjs-backend-webgl';
 //Import Dataset
 import datasetRaw from "./dataset.json"
-//Import componenti
-import Webcam from './components/webcam'
+//Import Body
+import AppBody from './components/body'
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -67,7 +67,7 @@ const App = () => {
             <h3 className="text-center">IOT For Everyone</h3>
           </div>
         </div>
-        <Webcam webcam={webcam} handpose={model} classifier={classifier} tf={tf} />
+        <AppBody webcam={webcam} handpose={model} classifier={classifier} tf={tf} />
       </div>
     </>
   )
