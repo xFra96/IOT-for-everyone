@@ -62,11 +62,6 @@ const App = () => {
         </div>
       </div>
       <div className="container-fluid text-center">
-        <div className="row mb-4">
-          <div className="col-lg-12 col-md-12">
-            <h3 className="text-center">IOT For Everyone</h3>
-          </div>
-        </div>
         <AppBody webcam={webcam} handpose={model} classifier={classifier} tf={tf} />
       </div>
     </>

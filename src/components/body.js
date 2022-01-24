@@ -92,6 +92,9 @@ const AppBody = ({ webcam, classifier, handpose, tf }) => {
 
     return (
         <div className="row">
+            <div className="col-lg-12 col-md-12 mb-4">
+                <h3 className="text-center">IOT 4 Everyone</h3>
+            </div>
             <Webcam startGuessing={startGuessing} stopGuessing={stopGuessing} guessing_status={guessing_status} />
             <Phrase hint1={hint1} hint2={hint2} hint3={hint3} phrase={phrase} deleteLastDigit={deleteLastDigit} deleteAll={deleteAll} />
         </div>
