@@ -6,5 +6,5 @@ Let your device speak for you !
 
 ```
 yarn install
-npm run start or npm run iot4everyone
+npm run start <sub>or</sub> npm run iot4everyone
 ```
