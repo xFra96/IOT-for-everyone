@@ -53,7 +53,7 @@ video {
 
 .textcontainer {
   height: fit-content;
-  min-height: 50%;
+  min-height: 250px;
   max-height: 80vh;
   display: flex;
   max-width: 100%;
