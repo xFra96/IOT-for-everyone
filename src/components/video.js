@@ -82,6 +82,7 @@ const Video = ({ setPhrase, classifier, handpose, tf }) => {
                 />
             </div>
             <div className="mt-3">
+                <p className="mb-3"><b>Premere START per iniziare a individuare i segni</b></p>
                 <button type="button" onClick={() => { startGuessing() }} className="btn btn-success mx-3 shadow">START</button>
                 <button type="button" onClick={() => { stopGuessing() }} className="btn btn-danger mx-3 shadow">STOP</button>
                 <a href="https://www.spreadthesign.com/it.it/alphabet/6/" rel="noreferrer" className="mt-3 w-100 text-center d-block" target="_blank">Esempi</a>
