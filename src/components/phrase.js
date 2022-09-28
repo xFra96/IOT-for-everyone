@@ -1,7 +1,8 @@
 import { useAppContext } from '../misc/model.provider'
 
 const Phrase = () => {
-    const { current_word } = useAppContext()
+    const { current_word, deleteWord, deleteLastDigit } = useAppContext()
+
     const synth = window.speechSynthesis;
     const voices = synth.getVoices()
     const speak = () => {
@@ -17,7 +18,7 @@ const Phrase = () => {
         synth.speak(utterThis);
     }
     return (
-        <>
+        <div className="col-lg-6 col-md-12">
             <div className="textcontainer">
                 <p>{current_word}</p>
             </div>
@@ -25,9 +26,9 @@ const Phrase = () => {
                 <div className="col-12 mb-4">
                     <p>Scegli una voce / Choose Language</p>
                     <select className="w-50 mx-auto form-select" id="selectlingua" aria-label="Seleziona lingua">
-                        {voices.map(el => {
+                        {voices.map((el, i) => {
                             return (
-                                <option value={el.name}>{el.name}</option>
+                                <option key={i} value={el.name}>{el.name}</option>
                             )
                         }
                         )
@@ -35,10 +36,14 @@ const Phrase = () => {
                     </select>
                 </div>
                 <div className="col-12">
-                    <button className="w-50 mx-auto btn btn-primary" onClick={() => { speak() }}>Parla</button>
+                    <button type="button" onClick={() => { deleteLastDigit() }} className="btn btn-warning mx-3">BACKSPACE</button>
+                    <button type="button" onClick={() => { deleteWord() }} className="btn btn-warning mx-3">DELETE</button>
+                </div>
+                <div className="col-12 mt-3">
+                    <button type="button" onClick={() => { speak() }} className="w-50 mx-auto btn btn-primary">Parla</button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

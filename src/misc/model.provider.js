@@ -109,6 +109,7 @@ export default function ModelProvider(props) {
     const values = {
         loading,
         message,
+        interval,
         current_word,
         deleteWord,
         setup,
