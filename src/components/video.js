@@ -1,7 +1,7 @@
 import Webcam from "react-webcam";
 import React, { useRef, useState } from 'react'
 
-const Video = ({ setPhrase, classifier, handpose, tf }) => {
+const VideoComponent = ({ setPhrase, classifier, handpose, tf }) => {
     const [guessing_status, setGuessStatus] = useState("OFF");
     const [interval, setGuessInterval] = useState(null);
     const webcamRef = useRef(null);
@@ -15,7 +15,7 @@ const Video = ({ setPhrase, classifier, handpose, tf }) => {
                 webcamRef.current !== null &&
                 webcamRef.current.video.readyState === 4
             ) {
-                // Recuper proprietà video della webcam
+                // Recupero proprietà video della webcam
                 const video = webcamRef.current.video;
                 const videoWidth = webcamRef.current.video.videoWidth;
                 const videoHeight = webcamRef.current.video.videoHeight;
@@ -30,24 +30,24 @@ const Video = ({ setPhrase, classifier, handpose, tf }) => {
                     let tensor = tf.tensor(keypoints);
                     const match = await classifier.predictClass(tensor);
                     const new_digit = match.label
-                    setPhrase(prev_phrase => {
+                    setPhrase(phrase => {
                         let new_phrase = ""
-                        if (prev_phrase === "") {
+                        if (phrase === "") {
                             if (new_digit !== "space") {
                                 new_phrase = new_digit
                             }
                         } else {
                             if (new_digit === "space") {
-                                new_phrase = prev_phrase + " "
+                                new_phrase = phrase + " "
                             } else {
-                                new_phrase = prev_phrase + new_digit
+                                new_phrase = phrase + new_digit
                             }
                         }
                         return new_phrase
                     })
                 }
             }
-        }, 2000)
+        }, 1000)
         return intervalID
     }
     //Funzione che setta lo status di detection su on e salva nello stato l'id del processo che lancia ogni 2 secondi la funzione detect()(ogni run prende un frame del video)
@@ -66,6 +66,7 @@ const Video = ({ setPhrase, classifier, handpose, tf }) => {
         clearInterval(interval)
         setGuessStatus("OFF")
     };
+
     return (
         <div className="col-lg-6 col-md-12">
             <p className='fs-5'><b>STATUS: <span className={guessing_status === "OFF" ? "text-danger" : "text-success"}>{guessing_status}</span></b></p>
@@ -91,4 +92,4 @@ const Video = ({ setPhrase, classifier, handpose, tf }) => {
     )
 }
 
-export default Video
+export default VideoComponent

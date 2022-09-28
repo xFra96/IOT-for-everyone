@@ -6,9 +6,10 @@ import * as handpose from '@tensorflow-models/handpose';
 import '@tensorflow/tfjs-backend-webgl';
 //Import Dataset
 import datasetRaw from "./dataset.json"
-//Import Webcam 
-import Video from './components/video'
-import Text from './components/text';
+//Import Video e Text (componenti)
+import VideoComponent from './components/video'
+import TextComponent from './components/text';
+
 const App = () => {
   const [application, setApplication] = useState({
     model: null,
@@ -18,13 +19,13 @@ const App = () => {
   const [phrase, setPhrase] = useState("");
 
   //Utilitites della frase
-  const deleteAll = () => {
+  const deletePhrase = () => {
     setPhrase("")
   };
 
   const deleteLastDigit = () => {
-    setPhrase(prev_phrase => {
-      let new_phrase = prev_phrase.substring(0, prev_phrase.length - 1);
+    setPhrase(actual_phrase => {
+      let new_phrase = actual_phrase.substring(0, actual_phrase.length - 1);
       return new_phrase
     })
   };
@@ -71,8 +72,19 @@ const App = () => {
           <div className="col-lg-12 col-md-12 mb-4">
             <h3 className="text-center">IOT 4 Everyone</h3>
           </div>
-          <Video setPhrase={setPhrase} handpose={application.model} classifier={application.classifier} tf={tf} />
-          <Text phrase={phrase} deleteLastDigit={deleteLastDigit} deleteAll={deleteAll} />
+        </div>
+        <div className="row">
+          <VideoComponent
+            setPhrase={setPhrase}
+            handpose={application.model}
+            classifier={application.classifier}
+            tf={tf}
+          />
+          <TextComponent
+            phrase={phrase}
+            deleteLastDigit={deleteLastDigit}
+            deletePhrase={deletePhrase}
+          />
         </div>
       </div>
     </>
