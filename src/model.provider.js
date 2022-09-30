@@ -35,6 +35,7 @@ export default function ModelProvider(props) {
             console.log("Dataset importato con successo, trovate " + total + " classi")
         } else {
             alert("Dataset non valido e/o vuoto ! Inserire un dataset valido")
+            return
         }
         setApplication({
             model: handPoseModel,
