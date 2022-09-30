@@ -29,6 +29,7 @@ video {
   flex-direction: column;
   justify-content: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 .circle {
@@ -52,16 +53,16 @@ video {
 }
 
 .textcontainer {
-  height: fit-content;
-  min-height: 250px;
-  max-height: 80vh;
+  height: 60%;
   display: flex;
   max-width: 100%;
   text-overflow: clip;
   justify-content: center;
   flex-direction: column;
+  /*border: 1px dotted gray*/
 }
 
 .textcontainer p {
   font-size: 40px;
+  overflow-y: scroll;
 }

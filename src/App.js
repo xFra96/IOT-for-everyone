@@ -18,73 +18,30 @@ const App = () => {
   });
   const [phrase, setPhrase] = useState("");
 
-  //Utilitites della frase
-  const deletePhrase = () => {
-    setPhrase("")
-  };
-
-  const deleteLastDigit = () => {
-    setPhrase(actual_phrase => {
-      let new_phrase = actual_phrase.substring(0, actual_phrase.length - 1);
-      return new_phrase
-    })
-  };
-
-  //Init del sistema
   useEffect(() => {
-    //Inizializzazione sistema
-    const setup = async () => {
-      console.log("Initializing model... ")
-      const handPoseModel = await handpose.load();
-      console.log("Initializing classifier... ")
-      const knn = knnClassifier.create();
-      if (Object.keys(datasetRaw).length > 0) {
-        datasetRaw.forEach(el => {
-          let tensor = tf.tensor(el.keypoints);
-          knn.addExample(tensor, el.label);
-        })
-        let total = knn.getNumClasses()
-        console.log("Dataset importato con successo, trovate " + total + " classi")
-      } else {
-        alert("Dataset non valido e/o vuoto ! Inserire un dataset valido")
-      }
-      setApplication({
-        model: handPoseModel,
-        classifier: knn,
-        loading: false
-      })
-      console.log("Ready !")
-    }
     setup()
   }, [])
 
+
   return (
     <>
-      {application.loading &&
+      {loading &&
         <div id="loading">
+          {message}
           <div className="spinner-border text-primary" role="status">
             <span className="sr-only"></span>
           </div>
         </div>
       }
       <div className="container-fluid text-center">
-        <div className="row">
-          <div className="col-lg-12 col-md-12 mb-4">
-            <h3 className="text-center">IOT 4 Everyone</h3>
+        <div className="row mb-4">
+          <div className="col-lg-12 col-md-12">
+            <h3 >IOT For Everyone</h3>
           </div>
         </div>
         <div className="row">
-          <VideoComponent
-            setPhrase={setPhrase}
-            handpose={application.model}
-            classifier={application.classifier}
-            tf={tf}
-          />
-          <TextComponent
-            phrase={phrase}
-            deleteLastDigit={deleteLastDigit}
-            deletePhrase={deletePhrase}
-          />
+          <Webcam />
+          <Phrase />
         </div>
       </div>
     </>
