@@ -1,6 +1,6 @@
-import { useAppContext } from '../misc/model.provider'
+import { useAppContext } from '../model.provider'
 
-const Phrase = () => {
+export const Phrase = () => {
     const { current_word, deleteWord, deleteLastDigit } = useAppContext()
 
     const synth = window.speechSynthesis;
@@ -46,5 +46,3 @@ const Phrase = () => {
         </div>
     )
 }
-
-export default Phrase

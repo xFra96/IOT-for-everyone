@@ -1,8 +1,8 @@
-import { useAppContext } from '../misc/model.provider'
+import { useAppContext } from '../model.provider'
 
-const Webcam = () => {
+export const Webcam = () => {
     const { startGuessing, stopAction, interval } = useAppContext()
-
+    console.log('render')
     return (
         <div className="col-lg-6 col-md-12">
             <p className='fs-5'><b>STATUS: <span className={interval ? "text-success" : "text-danger"}>{interval ? "ON" : "OFF"}</span></b></p>
@@ -18,5 +18,3 @@ const Webcam = () => {
         </div >
     )
 }
-
-export default Webcam

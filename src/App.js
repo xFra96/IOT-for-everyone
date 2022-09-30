@@ -1,33 +1,25 @@
-//Import moduli principali
-import React, { useState, useEffect } from 'react'
-import * as tf from "@tensorflow/tfjs";
-import * as knnClassifier from '@tensorflow-models/knn-classifier';
-import * as handpose from '@tensorflow-models/handpose';
-import '@tensorflow/tfjs-backend-webgl';
-//Import Dataset
-import datasetRaw from "./dataset.json"
-//Import Video e Text (componenti)
-import VideoComponent from './components/video'
-import TextComponent from './components/text';
+import React, { useEffect, useState } from 'react'
+import { useAppContext } from './model.provider'
+import { Webcam } from './components/webcam'
+import { Phrase } from './components/phrase'
 
 const App = () => {
-  const [application, setApplication] = useState({
-    model: null,
-    classifier: null,
-    loading: true
-  });
-  const [phrase, setPhrase] = useState("");
+  const { setup } = useAppContext()
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setup()
+    const runSetup = async () => {
+      await setup()
+      setLoading(false)
+    }
+    runSetup()
   }, [])
-
 
   return (
     <>
       {loading &&
         <div id="loading">
-          {message}
+          <p className='text-center'>Caricamento app...</p>
           <div className="spinner-border text-primary" role="status">
             <span className="sr-only"></span>
           </div>
