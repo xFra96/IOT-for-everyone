@@ -16,6 +16,7 @@ export default function ModelProvider(props) {
     const [interval, setIntervalID] = useState(null);
     const [current_letter, setCurrentLetter] = useState("");
     const [current_word, setCurrentWord] = useState("");
+
     //Initizializzazione sistema
     const setup = async () => {
         console.log("Initializing model... ")
