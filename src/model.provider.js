@@ -5,9 +5,9 @@ import * as handpose from '@tensorflow-models/handpose';
 import '@tensorflow/tfjs-backend-webgl';
 import datasetRaw from "./dataset.json"
 
-export const ModelContext = React.createContext(null)
+export const AppContext = React.createContext(null)
 
-export default function ModelProvider(props) {
+export default function FunctionsProvider(props) {
     const [application, setApplication] = useState({
         model: null,
         classifier: null,
@@ -115,13 +115,13 @@ export default function ModelProvider(props) {
     }
 
     return (
-        <ModelContext.Provider key="context" value={values}>
+        <AppContext.Provider key="context" value={values}>
             {props.children}
-        </ModelContext.Provider>
+        </AppContext.Provider>
     )
 }
 
 export function useAppContext() {
-    const value = useContext(ModelContext)
+    const value = useContext(AppContext)
     return value
 }
