@@ -53,7 +53,7 @@ video {
   height: 70vh;
   max-width: 100%;
   text-overflow: clip;
-  overflow-y: scroll;
+  overflow-y: auto;
   /*border: 1px dotted gray*/
 }
 
