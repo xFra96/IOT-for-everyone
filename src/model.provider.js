@@ -55,13 +55,15 @@ export default function FunctionsProvider(props) {
                     const keypoints = predictions[i].landmarks;
                     let tensor = tf.tensor(keypoints);
                     const match = await classifier.predictClass(tensor);
-                    if (match.label === "space") {
-                        let new_phrase = phrase + " "
-                        setPhrase(new_phrase)
-                    } else {
-                        let new_phrase = phrase + match.label
-                        setPhrase(new_phrase)
-                    }
+                    setPhrase(current_phrase => {
+                        let new_phrase = current_phrase
+                        if (match.label === "space") {
+                            new_phrase = new_phrase + " "
+                        } else {
+                            new_phrase = new_phrase + match.label
+                        }
+                        return new_phrase
+                    })
                 }
             }
         }, 2000)
