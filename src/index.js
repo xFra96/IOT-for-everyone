@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './assets/bootstrap.css';
 import './assets/index.css';
 import App from './App';
-import ModelProvider from './model.provider'
+import FunctionsProvider from "./functions.provider";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root')
-);
+const html_root_element = document.getElementById("root");
+const root = ReactDOM.createRoot(html_root_element);
 root.render(
-  <ModelProvider>
+  <FunctionsProvider>
     <App />
-  </ModelProvider>
+  </FunctionsProvider>
 );
