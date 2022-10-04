@@ -14,8 +14,7 @@ export default function FunctionsProvider(props) {
         webcam: null,
     });
     const [interval, setIntervalID] = useState(null);
-    const [current_letter, setCurrentLetter] = useState("");
-    const [current_word, setCurrentWord] = useState("");
+    const [phrase, setPhrase] = useState("");
 
     //Initizializzazione sistema
     const setup = async () => {
@@ -56,17 +55,26 @@ export default function FunctionsProvider(props) {
                     const keypoints = predictions[i].landmarks;
                     let tensor = tf.tensor(keypoints);
                     const match = await classifier.predictClass(tensor);
-                    console.log(match)
-                    setCurrentLetter(match.label)
+                    setPhrase(current_phrase => {
+                        let new_phrase = current_phrase
+                        if (match.label === "space") {
+                            new_phrase = new_phrase + " "
+                        } else {
+                            new_phrase = new_phrase + match.label
+                        }
+                        return new_phrase
+                    })
                 }
             }
-        }, 1500)
+        }, 2000)
         return intervalID
     }
 
-    const startGuessing = () => {
+    const actionsHandler = () => {
         if (interval) {
-            stopAction()
+            clearInterval(interval)
+            setIntervalID(null)
+            return
         }
         const numClasses = application.classifier.getNumClasses();
         if (numClasses > 0) {
@@ -78,40 +86,23 @@ export default function FunctionsProvider(props) {
     };
 
     //Utilities
-    const stopAction = () => {
-        clearInterval(interval)
-        setIntervalID(null)
-    };
-
-    const deleteWord = () => {
-        setCurrentWord("")
+    const deleteAll = () => {
+        setPhrase("")
     };
 
     const deleteLastDigit = () => {
-        let word = current_word.substring(0, current_word.length - 1);
-        setCurrentWord(word)
+        let new_phrase = phrase.substring(0, phrase.length - 1);
+        setPhrase(new_phrase)
     };
-
-    useEffect(() => {
-        if (current_letter === "space") {
-            let word = current_word + " "
-            setCurrentWord(word)
-        } else {
-            let word = current_word + current_letter
-            setCurrentWord(word)
-        }
-    }, [current_letter])
-
 
     //Packaging
     const values = {
         interval,
-        current_word,
-        deleteWord,
+        phrase,
+        deleteAll,
         setup,
         deleteLastDigit,
-        startGuessing,
-        stopAction,
+        actionsHandler,
     }
 
     return (
