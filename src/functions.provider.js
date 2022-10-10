@@ -31,10 +31,6 @@ export default function FunctionsProvider(props) {
         let tensor = tf.tensor(el.keypoints);
         knn.addExample(tensor, el.label);
       });
-      let total = knn.getNumClasses();
-      console.log(
-        "Dataset importato con successo, trovate " + total + " classi"
-      );
     } else {
       alert("Dataset non valido e/o vuoto ! Inserire un dataset valido");
       return;
@@ -78,13 +74,8 @@ export default function FunctionsProvider(props) {
       setIntervalID(null);
       return;
     }
-    const numClasses = application.classifier.getNumClasses();
-    if (numClasses > 0) {
-      let intervalID = guess();
-      setIntervalID(intervalID);
-    } else {
-      alert("Non ci sono classi nel classifier !");
-    }
+    let intervalID = guess();
+    setIntervalID(intervalID);
   };
 
   //Utilities
