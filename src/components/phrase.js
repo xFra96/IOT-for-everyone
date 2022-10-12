@@ -1,12 +1,12 @@
 import { useAppContext } from "../functions.provider";
 
 export default function Phrase() {
-  const { current_word, deleteWord, deleteLastDigit } = useAppContext();
+  const { phrase, deleteAll, deleteLastDigit } = useAppContext();
 
   const synth = window.speechSynthesis;
   const voices = synth.getVoices();
   const speak = () => {
-    let utterThis = new SpeechSynthesisUtterance(current_word);
+    let utterThis = new SpeechSynthesisUtterance(phrase);
     let selectedOption = document
       .querySelector("#selectlingua")
       .selectedOptions[0].getAttribute("value");
@@ -22,7 +22,7 @@ export default function Phrase() {
   return (
     <div className="col-lg-6 col-md-12">
       <div className="textcontainer">
-        <p>{current_word}</p>
+        <p>{phrase}</p>
       </div>
       <div className="row">
         <div className="col-12 mb-4">
@@ -54,7 +54,7 @@ export default function Phrase() {
           <button
             type="button"
             onClick={() => {
-              deleteWord();
+              deleteAll();
             }}
             className="btn btn-warning mx-3"
           >
