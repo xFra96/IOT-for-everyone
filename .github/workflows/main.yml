@@ -12,8 +12,8 @@ jobs:
       - name: stop service
         run: pm2 stop ecosystem.config.js
       - name: Install dependencies
-        run: npm install
+        run: yarn install
       - name: build
-        run: npm run build
+        run: yarn build
       - name: restart
         run: pm2 start ecosystem.config.js
