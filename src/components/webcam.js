@@ -23,26 +23,25 @@ export default function Webcam() {
         ></video>
       </div>
       <div className="mt-3">
-        {!interval && (
-          <p className="mb-1">
+        {interval ? (
+          <h6 className="mb-3">
+            Centra la mano nel cerchio verde per maggior precisione
+          </h6>
+        ) : (
+          <p className="mb-3">
             <i>
               Premere il pulsante sottostante per iniziare a individuare i segni
             </i>
           </p>
-        )}
-        {interval && (
-          <h6 className="mb-3">
-            Centra la mano nel cerchio verde per maggior precisione
-          </h6>
         )}
         <button
           type="button"
           onClick={() => {
             actionsHandler();
           }}
-          className="btn btn-success mx-3"
+          className={`btn mx-3 ${interval ? "btn-danger" : "btn-success"}`}
         >
-          START / STOP
+          {interval ? "STOP" : "START"}
         </button>
       </div>
     </div>

@@ -1,0 +1,19 @@
+name: Deploy
+
+# Controls when the action will run.
+on: [workflow_dispatch]
+jobs:
+  deploy:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          clean: false
+      - name: stop service
+        run: pm2 stop ecosystem.config.js
+      - name: Install dependencies
+        run: npm install
+      - name: build
+        run: npm run build
+      - name: restart
+        run: pm2 start ecosystem.config.js
